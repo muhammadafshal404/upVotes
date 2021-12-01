@@ -1,31 +1,37 @@
 {
-  "name": "@reactioncommerce/api-plugin-example",
-  "description": "Boilerplate Example plugin for the Reaction API",
+  "name": "@demandcluster/api-plugin-wishlists",
+  "description": "Wishlists plugin for the Reaction API",
   "version": "0.0.0-development",
   "main": "index.js",
   "type": "module",
   "engines": {
     "node": ">=12.14.1"
   },
-  "homepage": "https://github.com/reactioncommerce/api-plugin-example",
-  "url": "https://github.com/reactioncommerce/api-plugin-example",
-  "email": "engineering@reactioncommerce.com",
+  "homepage": "https://github.com/demandcluster/api-plugin-wishlists",
+  "url": "https://github.com/demandcluster/api-plugin-wishlists",
+  "email": "engineering@demandcluster.com",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/reactioncommerce/api-plugin-example.git"
+    "url": "git+https://github.com/demandcluster/api-plugin-wishlists.git"
   },
   "author": {
-    "name": "Reaction Commerce",
-    "email": "engineering@reactioncommerce.com",
-    "url": "https://reactioncommerce.com"
+    "name": "DemandCluster",
+    "email": "engineering@demandcluster.com",
+    "url": "https://demandcluster.com"
   },
-  "license": "Apache-2.0",
+  "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/reactioncommerce/api-plugin-example/issues"
+    "url": "https://github.com/demandcluster/api-plugin-wishlists/issues"
   },
   "sideEffects": false,
   "dependencies": {
-    "@reactioncommerce/api-utils": "^1.16.5"
+    "@reactioncommerce/api-utils": "^1.16.5",
+    "@reactioncommerce/logger": "^1.1.3",
+    "@reactioncommerce/random": "^1.0.2",
+    "@reactioncommerce/reaction-error": "^1.0.1",
+    "accounting-js": "^1.1.1",
+    "lodash": "^4.17.15",
+    "simpl-schema": "^1.12.0"
   },
   "devDependencies": {
     "@babel/core": "^7.7.7",
@@ -33,7 +39,7 @@
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
     "@reactioncommerce/babel-remove-es-create-require": "~1.0.0",
-    "@reactioncommerce/data-factory": "~1.0.1",
+    "@reactioncommerce/data-factory": "^1.0.1",
     "@reactioncommerce/eslint-config": "~2.1.0",
     "babel-eslint": "^10.0.3",
     "babel-jest": "~25.1.0",

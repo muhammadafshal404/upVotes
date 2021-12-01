@@ -1,0 +1,27 @@
+[
+  {
+    "description": "Wishlist managers acting on specific entities.",
+    "subjects": [ "reaction:groups:wishlist-managers" ],
+    "resources": [ "reaction:legacy:wishlists:*" ],
+    "actions": [
+      "read",
+      "update"
+    ],
+    "effect": "allow"
+  },
+  {
+    "description": "Wishlist owner acting on their wishlist.",
+    "subjects": [ "reaction:users:*" ],
+    "resources": [ "reaction:legacy:wishlists:*" ],
+    "actions": [
+      "read"
+    ],
+    "effect": "allow",
+    "conditions": {
+      "owner": {
+        "type": "EqualsSubjectCondition",
+        "options": {}
+      }
+    }
+  }
+]
