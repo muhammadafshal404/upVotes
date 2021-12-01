@@ -1,5 +1,5 @@
 {
-  "name": "@demandcluster/api-plugin-wishlists",
+  "name": "@husamaz1994/api-plugin-wishlists",
   "description": "Wishlists plugin for the Reaction API",
   "version": "0.0.0-development",
   "main": "index.js",
@@ -7,21 +7,21 @@
   "engines": {
     "node": ">=12.14.1"
   },
-  "homepage": "https://github.com/demandcluster/api-plugin-wishlists",
-  "url": "https://github.com/demandcluster/api-plugin-wishlists",
-  "email": "engineering@demandcluster.com",
+  "homepage": "https://github.com/husamaz1994/api-plugin-wishlists",
+  "url": "https://github.com/husamaz1994/api-plugin-wishlists",
+  "email": "engineering@husamaz1994.com",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/demandcluster/api-plugin-wishlists.git"
+    "url": "git+https://github.com/husamaz1994/api-plugin-wishlists.git"
   },
   "author": {
-    "name": "DemandCluster",
-    "email": "engineering@demandcluster.com",
-    "url": "https://demandcluster.com"
+    "name": "husamaz1994",
+    "email": "engineering@husamaz1994.com",
+    "url": "https://husamaz1994.com"
   },
   "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/demandcluster/api-plugin-wishlists/issues"
+    "url": "https://github.com/husamaz1994/api-plugin-wishlists/issues"
   },
   "sideEffects": false,
   "dependencies": {
