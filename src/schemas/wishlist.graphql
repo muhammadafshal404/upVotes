@@ -252,14 +252,14 @@ input WishlistItemInput {
   productConfiguration: ProductConfigurationInput!
 }
 
-"Input that defines a single configuration of a product"
-input ProductConfigurationInput {
-  "The Product ID"
-  productId: ID!
+# "Input that defines a single configuration of a product"
+# input ProductConfigurationInput {
+#   "The Product ID"
+#   productId: ID!
 
-  "The ProductVariant ID"
-  productVariantId: ID!
-}
+#   "The ProductVariant ID"
+#   productVariantId: ID!
+# }
 
 "Input for the `addWishlistItems` mutation"
 input AddWishlistItemsInput {
@@ -290,17 +290,17 @@ input RemoveWishlistItemsInput {
 # These types are used as return values for mutation calls
 ####################
 
-"Details about a WishlistItemInput that failed to be added to a wishlist due to a price mismatch"
-type IncorrectPriceFailureDetails {
-  "The current price in the system for this product configuration in the requested currency"
-  currentPrice: Money!
+# "Details about a WishlistItemInput that failed to be added to a wishlist due to a price mismatch"
+# type IncorrectPriceFailureDetails {
+#   "The current price in the system for this product configuration in the requested currency"
+#   currentPrice: Money!
 
-  "The productConfiguration that was provided with the WishlistItemInput that caused this failure"
-  productConfiguration: ProductConfiguration!
+#   "The productConfiguration that was provided with the WishlistItemInput that caused this failure"
+#   productConfiguration: ProductConfiguration!
 
-  "The price that was provided with the WishlistItemInput that caused this failure"
-  providedPrice: Money!
-}
+#   "The price that was provided with the WishlistItemInput that caused this failure"
+#   providedPrice: Money!
+# }
 
 "The payload returned from the `createWishlist` mutation call"
 type CreateWishlistPayload {
@@ -374,6 +374,5 @@ extend type Mutation {
   "Remove item(s) from a wishlist"
   removeWishlistItems(
     "Mutation input"
-    input: RemoveWishlistItemsInput!
-  ): RemoveWishlistItemsPayload!
+    input: RemoveWishlistItemsInput!): RemoveWishlistItemsPayload!
 }
