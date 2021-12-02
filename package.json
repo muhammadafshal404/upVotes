@@ -7,21 +7,21 @@
   "engines": {
     "node": ">=12.14.1"
   },
-  "homepage": "https://github.com/husamaz1994/api-plugin-wishlists",
-  "url": "https://github.com/husamaz1994/api-plugin-wishlists",
-  "email": "engineering@husamaz1994.com",
+  "homepage": "https://github.com/blackspider1994/api-plugin-wishlists",
+  "url": "https://github.com/blackspider1994/api-plugin-wishlists",
+  "email": "engineering@blackspider1994.com",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/husamaz1994/api-plugin-wishlists.git"
+    "url": "git+https://github.com/blackspider1994/api-plugin-wishlists.git"
   },
   "author": {
-    "name": "husamaz1994",
-    "email": "engineering@husamaz1994.com",
-    "url": "https://husamaz1994.com"
+    "name": "blackspider1994",
+    "email": "engineering@blackspider1994.com",
+    "url": "https://blackspider1994.com"
   },
   "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/husamaz1994/api-plugin-wishlists/issues"
+    "url": "https://github.com/blackspider1994/api-plugin-wishlists/issues"
   },
   "sideEffects": false,
   "dependencies": {
