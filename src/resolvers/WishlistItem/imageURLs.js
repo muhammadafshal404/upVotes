@@ -34,7 +34,7 @@ export default async function imageURLs(item, context) {
   const primaryImage = variant.media ? variant.media[0].URLs : {};
 
   if (!primaryImage) return {};
-  // return  primaryImage;
+  return  primaryImage;
   //   return ensureAbsoluteUrls({
   //     large: `${primaryImage.url({ store: "large" })}`,
   //     medium: `${primaryImage.url({ store: "medium" })}`,
