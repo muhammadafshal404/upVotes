@@ -24,31 +24,22 @@ function ensureAbsoluteUrls(imageInfo, context) {
  * @returns {Object} ImageSizes object
  */
 export default async function imageURLs(item, context) {
-  const { Media } = context.collections;
+  const { Products } = context.collections;
   const { productId, variantId } = item;
-  if (!Media) return {};
+  if (!Products) return {};
 
-  const media = await Media.find({
-    "$or": [
-      { "metadata.productId": productId },
-      { "metadata.variantId": variantId }
-    ],
-    "metadata.workflow": { $nin: ["archived", "unpublished"] }
-  }, {
-    sort: { "metadata.priority": 1, "uploadedAt": 1 },
-    limit: 1
-  });
+  const variant = await Products.findOne({ "_id": variantId });
 
-  if (!media || media.length === 0) return {};
-  const primaryImage = media[0];
+  if (!variant) return {};
+  const primaryImage = variant.media ? variant.media[0].URLs : {};
 
   if (!primaryImage) return {};
-
-  return ensureAbsoluteUrls({
-    large: `${primaryImage.url({ store: "large" })}`,
-    medium: `${primaryImage.url({ store: "medium" })}`,
-    original: `${primaryImage.url({ store: "image" })}`,
-    small: `${primaryImage.url({ store: "small" })}`,
-    thumbnail: `${primaryImage.url({ store: "thumbnail" })}`
-  }, context);
+  // return  primaryImage;
+  //   return ensureAbsoluteUrls({
+  //     large: `${primaryImage.url({ store: "large" })}`,
+  //     medium: `${primaryImage.url({ store: "medium" })}`,
+  //     original: `${primaryImage.url({ store: "image" })}`,
+  //     small: `${primaryImage.url({ store: "small" })}`,
+  //     thumbnail: `${primaryImage.url({ store: "thumbnail" })}`
+  //   }, context);
 }
