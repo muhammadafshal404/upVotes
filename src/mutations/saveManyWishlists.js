@@ -39,6 +39,7 @@ export default async function saveManyWishlists(context, wishlists) {
   try {
     Logger.trace({ ...logCtx, bulkWrites }, "Running bulk op");
     const bulkWriteResult = await Wishlist.bulkWrite(bulkWrites, { ordered: false });
+    console.log("bulkWriteResult", bulkWriteResult)
     ({ writeErrors } = bulkWriteResult.result);
   } catch (error) {
     if (!error.result || typeof error.result.getWriteErrors !== "function") throw error;

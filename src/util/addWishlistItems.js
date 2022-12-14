@@ -35,19 +35,20 @@ const inputItemSchema = new SimpleSchema({
  * @returns {Object} Object with `incorrectPriceFailures` and `minOrderQuantityFailures` and `updatedItemList` props
  */
 export default async function addWishlistItems(context, currentItems, inputItems, options = {}) {
-  const { queries } = context;
+  const { queries, collections } = context;
+  const { Products } = collections;
 
   inputItemSchema.validate(inputItems);
-
+  console.log("currentItems", currentItems, "inputItems", inputItems)
   const incorrectPriceFailures = [];
-  const updatedItemList = currentItems.slice(0);
-
+  const updatedItemList = currentItems;
+  let updatedList=[];
   const currentDateTime = new Date();
 
   const promises = inputItems.map(async (inputItem) => {
     const { metafields, productConfiguration, price } = inputItem;
     const { productId, productVariantId } = productConfiguration;
-
+    console.log("metafields, productConfiguration, price", metafields, productConfiguration, price)
     // Get the published product from the DB, in order to get variant title and check price.
     // This could be done outside of the loop to reduce db hits, but 99% of the time inputItems
     // will have only one item, so we can skip that optimization for now in favor of cleaner code.
@@ -63,6 +64,7 @@ export default async function addWishlistItems(context, currentItems, inputItems
     }
 
     if (options.skipPriceCheck !== true && variantPriceInfo.price !== price.amount) {
+      console.log("it is skipping the vlaues")
       incorrectPriceFailures.push({
         currentPrice: {
           amount: variantPriceInfo.price,
@@ -136,14 +138,25 @@ export default async function addWishlistItems(context, currentItems, inputItems
 
     const currentMatchingItemIndex = currentItems.findIndex((item) =>
       item.productId === productId && item.variantId === productVariantId);
+    console.log("currentMatchingItemIndex", currentMatchingItemIndex)
     if (currentMatchingItemIndex === -1) {
+
       wishlistItem.addedAt = currentDateTime;
       wishlistItem.createdAt = currentDateTime;
+      console.log("currentMatchingItemIndex if", productId, productVariantId)
       updatedItemList.push(wishlistItem);
+      
+      // it will increase upVotes only when it is not already in wishList
+      // increase the product upvotes
+      Products.updateOne(
+        { _id: productId },
+        { $inc: { upVotes: 1 } }
+      )
+      updatedList.push(wishlistItem);
     }
   });
-
   await Promise.all(promises);
+  console.log("updatedItemList", updatedList,)
 
   // Always keep most recently added items at the beginning of the list
   updatedItemList.sort((itemA, itemB) => itemA.addedAt.getTime() - itemB.addedAt.getTime());

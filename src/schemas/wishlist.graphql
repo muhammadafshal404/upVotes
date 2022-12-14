@@ -283,6 +283,9 @@ input RemoveWishlistItemsInput {
 
   "An optional string identifying the mutation call, which will be returned in the response payload"
   clientMutationId: String
+
+  "Product to be down vote"
+  productId: ID!
 }
 
 ####################

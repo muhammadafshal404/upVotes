@@ -19,7 +19,6 @@ export default async function addWishlistItems(context, input, options = {}) {
   const { wishlistId, items, wishlistToken } = input;
   const { collections, accountId = null } = context;
   const { Wishlist } = collections;
-
   let selector;
   if (accountId) {
     // Account wishlist
@@ -32,7 +31,7 @@ export default async function addWishlistItems(context, input, options = {}) {
 
     selector = { _id: wishlistId, anonymousAccessToken: hashToken(wishlistToken) };
   }
-
+  console.log("wishlist items", selector)
   const wishlist = await Wishlist.findOne(selector);
   if (!wishlist) {
     throw new ReactionError("not-found", "Wishlist not found");
@@ -43,7 +42,9 @@ export default async function addWishlistItems(context, input, options = {}) {
     minOrderQuantityFailures,
     updatedItemList
   } = await addWishlistItemsUtil(context, wishlist.items, items, { skipPriceCheck: options.skipPriceCheck });
-
+  console.log("addWishlistItemsUtil", incorrectPriceFailures,
+  minOrderQuantityFailures,
+  updatedItemList)
   const updatedWishlist = {
     ...wishlist,
     items: updatedItemList,
@@ -51,6 +52,6 @@ export default async function addWishlistItems(context, input, options = {}) {
   };
 
   const savedWishlist = await context.mutations.saveWishlist(context, updatedWishlist);
-
+  console.log("savedWishList", savedWishlist)
   return { wishlist: savedWishlist, incorrectPriceFailures, minOrderQuantityFailures };
 }

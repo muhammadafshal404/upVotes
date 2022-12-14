@@ -10,18 +10,23 @@ import ReactionError from "@reactioncommerce/reaction-error";
 export default async function saveWishlist(context, wishlist) {
   const { appEvents, collections: { Wishlist }, userId = null } = context;
 
+
   // These will mutate `wishlist`
   await context.mutations.removeMissingItemsFromWishlist(context, wishlist);
 
   const { result, upsertedCount } = await Wishlist.replaceOne({ _id: wishlist._id }, wishlist, { upsert: true });
+  console.log("here is we removing the item from wishList", result, upsertedCount)
+
   if (result.ok !== 1) throw new ReactionError("server-error", "Unable to save wishlist");
 
   if (upsertedCount === 1) {
+    console.log("first if")
     appEvents.emit("afterWishlistCreate", {
       wishlist,
       createdBy: userId
     });
   } else {
+    console.log("else")
     appEvents.emit("afterWishlistUpdate", {
       wishlist,
       updatedBy: userId

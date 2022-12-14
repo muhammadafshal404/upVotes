@@ -15,7 +15,7 @@ import { decodeWishlistItemOpaqueId, decodeWishlistOpaqueId } from "../../xforms
  * @returns {Promise<Object>} RemoveWishlistItemsPayload
  */
 export default async function removeWishlistItems(parentResult, { input }, context) {
-  const { wishlistId: opaqueWishlistId, clientMutationId = null, wishlistItemIds: opaqueWishlistItemIds, wishlistToken } = input;
+  const { wishlistId: opaqueWishlistId, clientMutationId = null, wishlistItemIds: opaqueWishlistItemIds, wishlistToken, productId } = input;
 
   const wishlistId = decodeWishlistOpaqueId(opaqueWishlistId);
   const wishlistItemIds = opaqueWishlistItemIds.map(decodeWishlistItemOpaqueId);
@@ -23,7 +23,8 @@ export default async function removeWishlistItems(parentResult, { input }, conte
   const { wishlist } = await context.mutations.removeWishlistItems(context, {
     wishlistId,
     wishlistItemIds,
-    wishlistToken
+    wishlistToken,
+    productId
   });
 
   return {
