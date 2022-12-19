@@ -60,7 +60,23 @@ export default async function removeWishlistItems(context, input) {
   // decrease the product upvotes
   Products.updateOne(
     { _id: decodedProductId },
-    { $inc: { upVotes: -1 } }
+    [
+      {
+        $set: {
+          "upVotes": {
+            $max: [
+              0,
+              {
+                $subtract: [
+                  "$upVotes",
+                  1
+                ]
+              }
+            ]
+          }
+        }
+      }
+    ]
   )
 
   return { wishlist: savedWishlist };
