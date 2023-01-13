@@ -38,14 +38,14 @@ export default async function removeMissingItemsFromWishlist(context, wishlist) 
   if (missingItems.length === 0) return;
 
   wishlist.items = items;
-  wishlist.missingItems = missingItems;
-  wishlist.updatedAt = new Date();
+  // wishlist.missingItems = missingItems;
+  // wishlist.updatedAt = new Date();
 
-  // Usually `mutations.transformAndValidateWishlist` removes missing items from groups
-  // whenever we save a wishlist, but sometimes this mutation will need to be called
-  // when initially reading a wishlist, before attempting to transform it to a CommonOrder.
-  // So we'll also update the groups here.
-  wishlist.shipping.forEach((group) => {
-    group.itemIds = (group.itemIds || []).filter((itemId) => !!items.find((item) => item._id === itemId));
-  });
+  // // Usually `mutations.transformAndValidateWishlist` removes missing items from groups
+  // // whenever we save a wishlist, but sometimes this mutation will need to be called
+  // // when initially reading a wishlist, before attempting to transform it to a CommonOrder.
+  // // So we'll also update the groups here.
+  // wishlist.shipping.forEach((group) => {
+  //   group.itemIds = (group.itemIds || []).filter((itemId) => !!items.find((item) => item._id === itemId));
+  // });
 }
